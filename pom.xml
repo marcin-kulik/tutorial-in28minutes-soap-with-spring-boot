@@ -26,9 +26,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -39,10 +42,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-ws-core</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -51,10 +50,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- JAXB2 Maven Plugin (1. XSD Source Folder 2. Java Object Source Folder 
+				3. Set 'clear folder' as false) -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>2.3.1</version>
+				<version>1.6</version>
 				<executions>
 					<execution>
 						<id>xjc</id>
@@ -64,10 +65,11 @@
 					</execution>
 				</executions>
 				<configuration>
-					<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
-					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-					<clearOutputDir>false</clearOutputDir>
-				    <noGeneratedHeaderComments>true</noGeneratedHeaderComments>
+					 <schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+					 <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+					 <clearOutputDir>false</clearOutputDir>
+					 <noGeneratedHeaderComments>true</noGeneratedHeaderComments>
+					 <createJavaDocAnnotations>false</createJavaDocAnnotations>
 				</configuration>
 			</plugin>
 		</plugins>
